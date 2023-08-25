@@ -21,9 +21,11 @@ jobs:
         sudo apt-get install zip
         zip -r archive.zip download
 
-    - name: Upload a file to Google Drive
-      uses: willo32/google-drive-upload-action@v1
+
+    - name: Upload a files to Google Drive
+      uses: wodndb/google-drive-upload-action@v1
       with:
-        target: archive.zip
+        target: |-
+          archive.zip
         credentials: ${{ secrets.CREDENTIALS }}
         parent_folder_id: ${{ secrets.FOLDER_ID }}
