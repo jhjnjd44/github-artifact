@@ -22,9 +22,10 @@ jobs:
         zip -r archive.zip download
 
     - name: Upload to gdrive
-      uses: adityak74/google-drive-upload-git-action@main
+      uses: mathisve/gdrive-upload-action@main
       with:
-        credentials: ${{ secrets.CREDENTIALS}}
-        filename: "archive.zip"
+        filename: archive.zip
+        name: documentation.zip
         folderId: ${{ secrets.FOLDER_ID }}
-        name: "documentation.zip"
+        credentials: ${{ secrets.CREDENTIALS }}
+        encoded: true
