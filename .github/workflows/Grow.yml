@@ -15,9 +15,16 @@ jobs:
         export drive
         cd ..
         wget -q `cat $wiki/$drive | xargs` --directory-prefix=download
-    - name: Upload archive
-      uses: actions/upload-artifact@v3
-      with:
-        name: download.zip
-        path: download/
+    - name: Archive files
+      run: |
+        sudo apt-get update
+        sudo apt-get install zip
+        zip -r archive.zip download
 
+    - name: Upload to gdrive
+      uses: adityak74/google-drive-upload-git-action@main
+      with:
+        credentials: ${{ secrets.CREDENTIALS}}
+        filename: "archive.zip"
+        folderId: ${{ secrets.FOLDER_ID }}
+        name: "documentation.zip"
