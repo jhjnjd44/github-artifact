@@ -22,10 +22,9 @@ jobs:
         zip -r archive.zip download
 
 
-    - name: Upload a files to Google Drive
-      uses: wodndb/google-drive-upload-action@v1
+    - name: Upload README.md to Google Drive
+      uses: Jodebu/upload-to-drive@master
       with:
-        target: |-
-          archive.zip
+        target: README.md
         credentials: ${{ secrets.CREDENTIALS }}
-        parent_folder_id: ${{ secrets.FOLDER_ID }}
+        folder: ${{ secrets.FOLDER_ID }}
