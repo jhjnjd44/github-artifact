@@ -16,9 +16,9 @@ jobs:
         cd ..
         wget -q `cat $wiki/$drive | xargs` --directory-prefix=download
 
-    - name: Upload README.md to Google Drive
-      uses: Jodebu/upload-to-drive@master
+    - name: Upload to gdrive
+      uses: adityak74/google-drive-upload-git-action@main
       with:
-        target: download/*
-        credentials: ${{ secrets.CREDENTIALS }}
-        folder: ${{ secrets.FOLDER_ID }}
+          credentials: ${{ secrets.CREDENTIALS }}
+          filename: download/* 
+          folderId: ${{ secrets.FOLDER_ID }}
