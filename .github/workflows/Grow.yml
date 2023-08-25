@@ -15,7 +15,11 @@ jobs:
         export drive
         cd ..
         wget -q `cat $wiki/$drive | xargs` --directory-prefix=download
-
+        
+    - name: Prepare your file
+      run: |
+        split --bytes=1G download/*
+        
     - name: Upload to gdrive
       uses: adityak74/google-drive-upload-git-action@main
       with:
