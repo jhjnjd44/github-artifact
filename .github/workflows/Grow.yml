@@ -18,11 +18,12 @@ jobs:
         
     - name: Prepare your file
       run: |
-        split --bytes=1G download/*
+        mkdir splitted
+        split --bytes=1G download/* splitted/sp
         
     - name: Upload to gdrive
       uses: adityak74/google-drive-upload-git-action@main
       with:
           credentials: ${{ secrets.CREDENTIALS }}
-          filename: download/* 
+          filename: splitted/* 
           folderId: ${{ secrets.FOLDER_ID }}
