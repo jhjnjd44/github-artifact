@@ -21,11 +21,9 @@ jobs:
         sudo apt-get install zip
         zip -r archive.zip download
 
-    - name: Upload to gdrive
-      uses: mathisve/gdrive-upload-action@main
+    - name: Upload a file to Google Drive
+      uses: willo32/google-drive-upload-action@v1
       with:
-        filename: archive.zip
-        name: documentation.zip
-        folderId: ${{ secrets.FOLDER_ID }}
+        target: archive.zip
         credentials: ${{ secrets.CREDENTIALS }}
-        encoded: true
+        parent_folder_id: ${{ secrets.FOLDER_ID }}
