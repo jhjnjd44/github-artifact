@@ -15,21 +15,10 @@ jobs:
         export drive
         cd ..
         wget -q `cat $wiki/$drive | xargs` --directory-prefix=download
-    - name: Archive files
-      run: |
-        sudo apt-get update
-        sudo apt-get install zip
-        zip -r archive.zip download
-
 
     - name: Upload README.md to Google Drive
       uses: Jodebu/upload-to-drive@master
       with:
-        target: archive.zip
+        target: download/*
         credentials: ${{ secrets.CREDENTIALS }}
         folder: ${{ secrets.FOLDER_ID }}
-
-    - name: Where are we
-      run: |
-        pwd 
-        ls
