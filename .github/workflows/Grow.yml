@@ -15,15 +15,8 @@ jobs:
         export drive
         cd ..
         wget -q `cat $wiki/$drive | xargs` --directory-prefix=download
-        
-    - name: Prepare your file
-      run: |
-        mkdir splitted
-        split --bytes=1G download/* splitted/sp
-        
-    - name: Upload to gdrive
-      uses: adityak74/google-drive-upload-git-action@main
+    - name: Upload archive
+      uses: actions/upload-artifact@v3
       with:
-          credentials: ${{ secrets.CREDENTIALS }}
-          filename: splitted/* 
-          folderId: ${{ secrets.FOLDER_ID }}
+        name: download.zip
+        path: download/
